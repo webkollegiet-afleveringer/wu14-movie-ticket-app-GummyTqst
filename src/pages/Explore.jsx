@@ -39,7 +39,7 @@ export default function Explore() {
           <>
             <section className="mt-12">
               <div className="flex justify-between">
-                <h2 className="text-white text-lg font-bold px-4 mb-3">Trending This Week</h2>
+                <h2 className="text-white text-lg font-bold px-4 mb-3">Top Movies</h2>
                 <p className="text-line">See more</p>
               </div>
               <div className="flex overflow-x-auto gap-4 px-4 no-scrollbar">
