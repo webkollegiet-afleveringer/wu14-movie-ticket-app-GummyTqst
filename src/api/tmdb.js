@@ -10,7 +10,6 @@ const fetchMovies = async (endpoint) => {
 export const API = {
     getNowShowing: () => fetchMovies('/movie/now_playing'),
     getUpcoming: () => fetchMovies('/movie/upcoming'),
-    getTopRated: () => fetchMovies('/movie/top_rated'),
     getTrending: () => fetchMovies('/trending/movie/week'),
     getRecommended: () => fetchMovies('/movie/popular'),
     getMovieDetails: async (id) => {
