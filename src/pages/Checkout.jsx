@@ -27,7 +27,7 @@ export default function Checkout() {
         
         localStorage.removeItem(`selected_${movieId}`)
         
-        navigate(`/movie/${movieId}/seats`)
+        navigate(`/`)
     }
 
     if (loading) return null
@@ -75,7 +75,7 @@ export default function Checkout() {
 
             <button 
                 onClick={handlePay}
-                className="w-full py-4 bg-active text-white rounded-xl font-medium"
+                className="w-full py-4 bg-accent text-white rounded-xl font-medium"
             >
                 Pay Now | ${total}
             </button>

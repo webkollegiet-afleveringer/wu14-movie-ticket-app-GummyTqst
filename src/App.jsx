@@ -7,14 +7,16 @@ import MovieDetails from './pages/MovieDetails'
 import Explore from './pages/Explore'
 import SeatSelector from './pages/SeatSelector'
 import Checkout from './pages/Checkout'
+import { homeLoader } from './loaders/homeLoader'
+import { exploreLoader } from './loaders/exploreLoader'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <Home /> },
-      { path: 'movies', element: <Explore />, },
+      { index: true, element: <Home />, loader: homeLoader },
+      { path: 'movies', element: <Explore />, loader: exploreLoader },
       { path: 'movie/:id', element: <MovieDetails />, },
       { path: 'movie/:id/select-seats', element: <SeatSelector />, },
       { path: 'movie/:id/checkout', element: <Checkout />, },

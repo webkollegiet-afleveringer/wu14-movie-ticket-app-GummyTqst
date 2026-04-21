@@ -11,6 +11,7 @@ export const API = {
     getNowShowing: () => fetchMovies('/movie/now_playing'),
     getUpcoming: () => fetchMovies('/movie/upcoming'),
     getTopRated: () => fetchMovies('/movie/top_rated'),
+    getTrending: () => fetchMovies('/trending/movie/week'),
     getRecommended: () => fetchMovies('/movie/popular'),
     getMovieDetails: async (id) => {
       const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=credits`);

@@ -49,8 +49,8 @@ export default function SeatSelector(){
             <Header back title="Select Seats" />
             <div className="px-4">
                 <div className="py-8 flex flex-col items-center relative">
-                    <img src={blueLineSvg} alt="Screen line" className="" />
-                    <img src={screenSvg} alt="Cinema screen" className="w-80" />
+                    <img src={blueLineSvg} alt="Screen line" className="absolute top w-65" />
+                    <img src={screenSvg} alt="Cinema screen" className="w-full" />
                 </div>
 
                 {/* Seat Grid */}
@@ -114,7 +114,7 @@ export default function SeatSelector(){
                     <div className="fixed bottom-24 left-4 right-4">
                         <button 
                             onClick={handleCheckout}
-                            className="w-full py-4 bg-active text-white rounded-xl font-medium"
+                            className="w-full py-4 bg-accent text-white rounded-xl font-medium"
                         >
                             Confirm ({selectedSeats.length} seat{selectedSeats.length > 1 ? 's' : ''})
                         </button>
