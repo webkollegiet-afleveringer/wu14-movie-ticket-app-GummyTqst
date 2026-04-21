@@ -8,7 +8,7 @@
   --color-accent: hsl(205.24, 73.6%, 61.37%);
   --color-inactive: #636882;
   --color-muted: hsl(218.18 4.98% 43.33% / 30%);
-  --color-line: #696D74
+  --color-line: #696D74;
 }
 
 #root {

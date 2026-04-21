@@ -28,10 +28,10 @@ export default function Home() {
           <div className="flex flex-col gap-3 px-4">
             {cinemas.map((cinema) => {
               const info = cinema.properties;
-              const distanceKm = info.distance ? (info.distance / 1000).toFixed(1) : "?.?";
+              const distanceKm = info.distance ? (info.distance / 1000).toFixed(2) : "?.?";
               
               return (
-                <div key={info.place_id} className="flex items-center bg-[#1c252e] p-3 rounded-3xl">
+                <div key={info.place_id} className="flex items-center rounded-2xl">
                   <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center p-2 shrink-0">
                     <span className="text-black font-black text-xs text-center leading-tight">
                       {info.name?.split(' ')[0].toUpperCase() || "CINE"}
