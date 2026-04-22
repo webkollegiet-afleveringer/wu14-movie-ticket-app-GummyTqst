@@ -107,11 +107,6 @@ export default function SeatSelector(){
                     </div>
                 </section>
                 
-
-
-
-
-
                 <div className="py-8 pb-0 flex flex-col items-center">
                     <img src={screenSvg} alt="Cinema screen" className="w-full" />
                 </div>
