@@ -112,8 +112,7 @@ export default function SeatSelector(){
 
 
 
-                <div className="py-8 flex flex-col items-center relative">
-                    <img src={blueLineSvg} alt="Screen line" className="absolute top w-65" />
+                <div className="py-8 pb-0 flex flex-col items-center">
                     <img src={screenSvg} alt="Cinema screen" className="w-full" />
                 </div>
 

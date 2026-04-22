@@ -42,7 +42,7 @@ const Header = ({
 
         {/* Center */}
         {title && (
-          <h1 className="absolute left-1/2 -translate-x-1/2 font-medium">
+          <h1 className="absolute left-1/2 -translate-x-1/2 font-medium text-xl">
             {title}
           </h1>
         )}

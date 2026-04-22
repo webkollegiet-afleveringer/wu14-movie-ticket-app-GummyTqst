@@ -55,31 +55,39 @@ export default function Checkout() {
         <> 
             <Header back title="Checkout" />
             <div className="p-4">
-            <div className="group h-56 w-full max-w-sm [perspective:1000px] mb-12">
-                <div className={`relative h-full w-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}>
+            <div className="group h-56 w-full max-w-sm perspective-[1000px] mb-12">
+                <div>
+                    <h2 className="text-xl font-bold text-text mb-4">Payment Method</h2>
+                </div>
+
+                <div className={`relative h-full w-full rounded-2xl transition-all duration-500 transform-3d ${isFlipped ? 'transform-[rotateY(180deg)]' : ''}`}>
                 
                     {/* Front */}
-                    <div className="absolute inset-0 h-full w-full rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 p-6 [backface-visibility:hidden]">
-                        <div className="flex justify-between items-start mb-12">
-                        <div className="w-10 h-7 bg-orange-400 rounded-sm opacity-80" /> {/* Chip */}
-                        <div className="text-right">
-                            <span className="text-[10px] uppercase opacity-60 block">Balance</span>
-                            <span className="text-xl font-bold">$120,580,00</span>
-                        </div>
-                        </div>
-                        <div className="space-y-4">
-                        <div className="text-lg tracking-widest font-mono">{displayNum}</div>
-                        <div className="flex justify-between items-end">
-                            <div>
-                            <span className="text-[10px] uppercase opacity-60 block">Card Holder</span>
-                            <span className="uppercase tracking-wider">{card.name || 'Miles Morales'}</span>
+                    <div className="absolute inset-0 h-full w-full rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 p-6 backface-hidden">
+                        <header className="flex justify-between items-start mb-12">
+                            <div className="flex gap-2">
+                                <div className="w-10 h-7 bg-orange-400 rounded-sm opacity-80" />
+                                <div className="w-10 h-7 bg-pink-400 rounded-sm opacity-80" />
                             </div>
-                        </div>
-                        </div>
+                            <div className="text-right">
+                                <p className="text-[10px] uppercase opacity-60">Balance</p>
+                                <p className="text-xl font-bold">$120,580,00</p>
+                            </div>
+                        </header>
+                        <footer className="flex justify-between items-end mt-auto">
+                            <div className="w-[25%]">
+                                <p className="text-[10px] uppercase opacity-60">Card Holder</p>
+                                <p className="uppercase tracking-wider text-sm">{card.name || 'MILES MORALES'}</p>
+                            </div>
+                            <div className="w-[70%] text-right">
+                                <p className="text-[10px] uppercase opacity-60">Card Number</p>
+                                <p className="uppercase tracking-wider font-mono text-sm">{displayNum}</p>
+                            </div>
+                        </footer>
                     </div>
 
                     {/* Back */}
-                    <div className="absolute inset-0 h-full w-full rounded-2xl bg-slate-800 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-around py-4">
+                    <div className="absolute inset-0 h-full w-full rounded-2xl bg-slate-800 transform-[rotateY(180deg)] backface-hidden flex flex-col justify-around py-4">
                         <div className="h-10 w-full bg-black" />
                         <div className="px-6 text-right">
                             <div className="bg-white text-black px-2 py-1 rounded italic font-bold">
@@ -91,6 +99,7 @@ export default function Checkout() {
             </div>
             
             {/* Form Area */}
+            <h2 className="text-xl font-bold text-text mb-4">Payment Details</h2>
             <form className="w-full max-w-sm space-y-4">
                 <div>
                     <label>Cardholder Name</label>
@@ -136,6 +145,13 @@ export default function Checkout() {
                         />
                     </div>
                 </div>
+
+                <button 
+                    onClick={handlePay}
+                    className="w-full py-4 bg-accent text-white rounded-xl font-medium"
+                >
+                    Pay Now | ${total}
+                </button>
             </form>
 
 
@@ -147,7 +163,7 @@ export default function Checkout() {
 
 
 
-                <div className="bg-gray-800 rounded-xl p-4 mb-6">
+                {/* <div className="bg-gray-800 rounded-xl p-4 mb-6">
                     <h2 className="text-gray-400 text-sm mb-2">Selected Seats</h2>
                     <div className="flex flex-wrap gap-2">
                         {selectedSeats.map(seat => (
@@ -174,14 +190,9 @@ export default function Checkout() {
                         <span>Total</span>
                         <span>${total}</span>
                     </div>
-                </div>
+                </div> */}
 
-                <button 
-                    onClick={handlePay}
-                    className="w-full py-4 bg-accent text-white rounded-xl font-medium"
-                >
-                    Pay Now | ${total}
-                </button>
+
             </div>
         </>
     )
