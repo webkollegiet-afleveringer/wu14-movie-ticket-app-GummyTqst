@@ -55,7 +55,7 @@ export default function Checkout() {
         <> 
             <Header back title="Checkout" />
             <div className="p-4">
-            <div className="group h-56 w-full max-w-sm perspective-[1000px] mb-12">
+            <div className="group h-44 w-80 max-w-sm perspective-[1000px] mb-20">
                 <div>
                     <h2 className="text-xl font-bold text-text mb-4">Payment Method</h2>
                 </div>
@@ -63,7 +63,7 @@ export default function Checkout() {
                 <div className={`relative h-full w-full rounded-2xl transition-all duration-500 transform-3d ${isFlipped ? 'transform-[rotateY(180deg)]' : ''}`}>
                 
                     {/* Front */}
-                    <div className="absolute inset-0 h-full w-full rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 p-6 backface-hidden">
+                    <div className="absolute inset-0 h-full w-full rounded-2xl bg-linear-to-br from-blue-600 to-blue-400 p-6 backface-hidden">
                         <header className="flex justify-between items-start mb-12">
                             <div className="flex gap-2">
                                 <div className="w-10 h-7 bg-orange-400 rounded-sm opacity-80" />
@@ -75,12 +75,11 @@ export default function Checkout() {
                             </div>
                         </header>
                         <footer className="flex justify-between items-end mt-auto">
-                            <div className="w-[25%]">
+                            <div className="w-[30%]">
                                 <p className="text-[10px] uppercase opacity-60">Card Holder</p>
-                                <p className="uppercase tracking-wider text-sm">{card.name || 'MILES MORALES'}</p>
+                                <p className="uppercase tracking-wider text-xs">{card.name || 'MILES MORALES'}</p>
                             </div>
                             <div className="w-[70%] text-right">
-                                <p className="text-[10px] uppercase opacity-60">Card Number</p>
                                 <p className="uppercase tracking-wider font-mono text-sm">{displayNum}</p>
                             </div>
                         </footer>
@@ -106,6 +105,7 @@ export default function Checkout() {
                     <input
                         type="text"
                         placeholder="Cardholder name"
+                        maxLength={15}
                         className="w-full bg-transparent border border-line rounded-xl p-3 outline-none focus:border-blue-500"
                         onChange={e => setCard({...card, name: e.target.value})}
                     />
