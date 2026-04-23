@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router"
 import Header from "../components/Header"
+import Popup from "../components/Popup"
 
 const TICKET_PRICE = 12
 
@@ -12,6 +13,7 @@ export default function Checkout() {
 
     const [card, setCard] = useState({ number: '', name: '', expiry: '', cvv: '' })
     const [isFlipped, setIsFlipped] = useState(false)
+    const [showPopup, setShowPopup] = useState(false)
 
     const formatCardDisplay = (num) => {
         const padded = num.padEnd(16, '*');
@@ -29,6 +31,11 @@ export default function Checkout() {
     const total = selectedSeats.length * TICKET_PRICE
 
     const handlePay = () => {
+        setShowPopup(true)
+    }
+
+    const handleSuccessClose = () => {
+        setShowPopup(false)
         const reserved = JSON.parse(localStorage.getItem("reserved_seats") || "{}")
         if (!reserved[movieId]) {
             reserved[movieId] = []
@@ -38,7 +45,7 @@ export default function Checkout() {
         
         localStorage.removeItem(`selected_${movieId}`)
         
-        navigate(`/`)
+        setShowPopup(false);
     }
 
     if (loading) return null
@@ -147,11 +154,24 @@ export default function Checkout() {
                 </div>
 
                 <button 
+                    type="button"
                     onClick={handlePay}
                     className="w-full py-4 bg-accent text-white rounded-xl font-medium"
                 >
                     Pay Now | ${total}
                 </button>
+
+                {showPopup && (
+                    <Popup 
+                        isOpen={showPopup} 
+                        onClose={handleSuccessClose}
+                        title="Your payment was successful"
+                        message="Your tickets have been booked successfully!"
+                        buttonText="See E-Ticket"
+                        navigateTo={`/movie/${movieId}/tickets`}
+                    >
+                    </Popup>
+                )}
             </form>
 
 
