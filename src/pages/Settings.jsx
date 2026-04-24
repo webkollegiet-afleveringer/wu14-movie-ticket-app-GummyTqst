@@ -61,6 +61,7 @@ export default function Settings() {
             icon={<TicketIcon className="size-24 text-white" />}
             label="Your Ticket"
             iconBg="#54C2E5"
+            navigateTo="/tickets"
           />
           <ListItem 
             icon={<LogoutIcon className="size-24 text-white" />}

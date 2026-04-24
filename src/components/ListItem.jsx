@@ -1,9 +1,19 @@
 import { FaChevronRight } from "react-icons/fa6"
+import { useNavigate } from "react-router"
 
-const ListItem = ({ icon, label, iconBg, onClick }) => {
+const ListItem = ({ icon, label, iconBg, onClick, navigateTo = "/" }) => {
+    const navigate = useNavigate()
+
+    const handleAction = () => {
+        if (onClick) {
+            onClick()
+        }
+        navigate(navigateTo)
+    }
+
     return (
         <button
-            onClick={onClick}
+            onClick={handleAction}
             className="flex items-center gap-4 w-full py-3"
         >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: iconBg || 'var(--color-accent)' }}>

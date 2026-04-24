@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       { path: 'movie/:id', element: <MovieDetails />, },
       { path: 'movie/:id/select-seats', element: <SeatSelector />, loader: seatSelectorLoader },
       { path: 'movie/:id/checkout', element: <Checkout />, },
-      { path: 'movie/:id/tickets', element: <Tickets />, },
+      { path: 'tickets', element: <Tickets />, },
       { path: 'bookings', element: <Bookings />, },
       { path: 'settings', element: <Settings /> },
     ],

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate, useLoaderData } from "react-router"
 
 import screenSvg from "../assets/svg/screen.svg"
-import blueLineSvg from "../assets/svg/blueScreenLine.svg"
 import Seat from "../components/Seats"
 import Header from "../components/Header"
 import { FaChevronDown } from "react-icons/fa6"
@@ -11,6 +10,9 @@ export default function SeatSelector(){
     const { id: movieId } = useParams()
     const navigate = useNavigate()
     const [selectedSeats, setSelectedSeats] = useState([])
+    const [selectedDate, setSelectedDate] = useState("")
+    const [selectedTime, setSelectedTime] = useState("")
+    const [selectedCinema, setSelectedCinema] = useState("")
     const { cinemas } = useLoaderData()
 
     const seatLayout = [
@@ -40,7 +42,12 @@ export default function SeatSelector(){
 
     const handleCheckout = () => {
         if (selectedSeats.length === 0) return
-        navigate(`/movie/${movieId}/checkout`)
+        if (!selectedDate || !selectedTime) {
+            alert("Please select both date and time");
+            return;
+        }
+        const params = new URLSearchParams({ date: selectedDate, time: selectedTime, cinema: selectedCinema });
+        navigate(`/movie/${movieId}/checkout?${params.toString()}`)
     }
 
     const reserved = JSON.parse(localStorage.getItem("reserved_seats") || "{}")
@@ -63,10 +70,14 @@ export default function SeatSelector(){
                     <div>
                         <label className="block text-lg mb-3">Cinema</label>
                         <div className="relative">
-                            <select className="w-full bg-transparent border border-line rounded-2xl p-4 appearance-none focus:outline-none text-text-secondary">
+                            <select 
+                                className="w-full bg-transparent border border-line rounded-2xl p-4 appearance-none focus:outline-none text-text-secondary"
+                                value={selectedCinema}
+                                onChange={e => setSelectedCinema(e.target.value)}
+                            >
                                 {cinemas.length > 0 ? (
                                     cinemas.map((cinema) => (
-                                        <option key={cinema.properties.place_id} value={cinema.properties.place_id}>
+                                        <option key={cinema.properties.place_id} value={cinema.properties.name}>
                                             {cinema.properties.name}
                                         </option>
                                     ))
@@ -83,7 +94,12 @@ export default function SeatSelector(){
                         <div className="flex-1">
                             <label className="block text-lg mb-3">Date</label>
                             <div className="relative">
-                                <select className="w-full bg-transparent border border-line rounded-2xl p-4 appearance-none focus:outline-none text-text-secondary">
+                                <select 
+                                    className="w-full bg-transparent border border-line rounded-2xl p-4 appearance-none focus:outline-none text-text-secondary"
+                                    value={selectedDate}
+                                    onChange={e => setSelectedDate(e.target.value)}
+                                >
+                                    <option value="">Select date</option>
                                     {dates.map((date) => (
                                         <option key={date} value={date}>{date}</option>
                                     ))}
@@ -96,7 +112,12 @@ export default function SeatSelector(){
                         <div className="flex-1">
                             <label className="block text-lg mb-3">Time</label>
                             <div className="relative">
-                                <select className="w-full bg-transparent border border-line rounded-2xl p-4 appearance-none focus:outline-none text-text-secondary">
+                                <select 
+                                    className="w-full bg-transparent border border-line rounded-2xl p-4 appearance-none focus:outline-none text-text-secondary"
+                                    value={selectedTime}
+                                    onChange={e => setSelectedTime(e.target.value)}
+                                >
+                                    <option value="">Select time</option>
                                     {times.map((time) => (
                                         <option key={time} value={time}>{time}</option>
                                     ))}
