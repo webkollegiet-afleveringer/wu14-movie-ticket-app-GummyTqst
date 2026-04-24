@@ -10,6 +10,7 @@ import Checkout from './pages/Checkout'
 import { homeLoader } from './loaders/homeLoader'
 import { exploreLoader } from './loaders/exploreLoader'
 import { seatSelectorLoader } from './loaders/seatLoader' 
+import { bookingsLoader } from './loaders/bookingsLoader'
 import Tickets from './pages/Tickets'
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       { path: 'movie/:id/select-seats', element: <SeatSelector />, loader: seatSelectorLoader },
       { path: 'movie/:id/checkout', element: <Checkout />, },
       { path: 'tickets', element: <Tickets />, },
-      { path: 'bookings', element: <Bookings />, },
+      { path: 'bookings', element: <Bookings />, loader: bookingsLoader },
       { path: 'settings', element: <Settings /> },
     ],
   },
